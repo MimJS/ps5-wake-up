@@ -10,6 +10,7 @@ const TOKEN_URL =
 
 const exchangeCodeForAccess = async (code) => {
   const { access_token: accessToken } = await fetch(TOKEN_URL, {
+    method: "POST",
     body: {
       username: CLIENT_ID,
       password: CLIENT_SECRET,
@@ -56,7 +57,7 @@ const main = async () => {
     password: CLIENT_SECRET,
   }).then((res) => res.json());
 
-  console.log('extractAccountId(accountInfo)', extractAccountId(accountInfo))
+  console.log("extractAccountId(accountInfo)", extractAccountId(accountInfo));
 };
 
 main();
