@@ -1,9 +1,8 @@
 const dgram = require("dgram");
 const client = dgram.createSocket("udp4");
 
-const _DDP_VERSION =
-  "9ba0c0f4df1edc0678f72961bab4a504c1a407bf45271a6bceae8d5241ad9b96";
-const cred = "-1960968355";
+const _DDP_VERSION = "00030010";
+const cred = "9ba0c0f4df1edc0678f72961bab4a504c1a407bf45271a6bceae8d5241ad9b96";
 
 // Using template literals to construct the formatted string
 const pkt_output = `
