@@ -1,6 +1,7 @@
 const dgram = require("dgram");
 const client = dgram.createSocket("udp4");
 
+const _DDP_VERSION = "00030010";
 const cred = "-1960968355";
 
 // Using template literals to construct the formatted string
@@ -9,6 +10,7 @@ LAUNCH * HTTP/1.1
 client-type:a
 auth-type:C
 user-credential:${cred}
+device-discovery-protocol-version:${_DDP_VERSION}
 `;
 
 const message = Buffer.from(pkt_output);
