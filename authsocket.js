@@ -15,7 +15,8 @@ device-discovery-protocol-version:${_DDP_VERSION}
 
 const message = Buffer.from(pkt_output);
 const SERVER_PORT = 9302;
-const SERVER_HOST = "192.168.1.105";
+const SECOND_SERVER_PORT = 9302;
+const SERVER_HOST = "192.168.1.255";
 
 client.on("message", (responseMessage, remote) => {
   console.log(
@@ -26,15 +27,20 @@ client.on("message", (responseMessage, remote) => {
   client.close();
 });
 
-client.bind(() => {
-  client.setBroadcast(true);
+client.send(message, SERVER_PORT, SERVER_HOST, (error) => {
+  if (error) {
+    console.log("Error sending message:", error);
+    client.close();
+  } else {
+    console.log("Message sent to broadcast address!");
+  }
+});
 
-  client.send(message, SERVER_PORT, SERVER_HOST, (error) => {
-    if (error) {
-      console.log("Error sending message:", error);
-      client.close();
-    } else {
-      console.log("Message sent to broadcast address!");
-    }
-  });
+client.send(message, SECOND_SERVER_PORT, SERVER_HOST, (error) => {
+  if (error) {
+    console.log("Error sending message:", error);
+    client.close();
+  } else {
+    console.log("Message sent to broadcast address!");
+  }
 });
