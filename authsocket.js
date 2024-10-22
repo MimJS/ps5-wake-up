@@ -14,7 +14,7 @@ device-discovery-protocol-version:${_DDP_VERSION}
 `;
 
 const message = Buffer.from(pkt_output);
-const SERVER_PORT = 9303;
+const SERVER_PORT = 9302;
 const SERVER_HOST = "192.168.1.105";
 
 client.on("message", (responseMessage, remote) => {
