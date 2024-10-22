@@ -26,5 +26,5 @@ axios(config)
     console.log(`BODY: ${response.data}`);
   })
   .catch((error) => {
-    console.error(`Error: ${error.message}`);
+    console.error(`Error: ${error}`);
   });
