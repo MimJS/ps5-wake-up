@@ -9,7 +9,7 @@ const TOKEN_URL =
   "https://auth.api.sonyentertainmentnetwork.com/2.0/oauth/token";
 
 const exchangeCodeForAccess = async (code) => {
-  const { access_token: accessToken } = fetch(TOKEN_URL, {
+  const { access_token: accessToken } = await fetch(TOKEN_URL, {
     body: {
       username: CLIENT_ID,
       password: CLIENT_SECRET,
