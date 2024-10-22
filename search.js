@@ -20,8 +20,6 @@ client.send(message, SERVER_PORT, SERVER_HOST, (error) => {
   } else {
     console.log("Message sent!");
   }
-
-  client.close();
 });
 
 client.on("message", (responseMessage, remote) => {
