@@ -11,7 +11,11 @@ const TOKEN_URL =
 const exchangeCodeForAccess = async (code) => {
   const { access_token: accessToken } = await fetch(TOKEN_URL, {
     method: "POST",
-    body: {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
       username: CLIENT_ID,
       password: CLIENT_SECRET,
       form: {
@@ -19,7 +23,7 @@ const exchangeCodeForAccess = async (code) => {
         grant_type: "authorization_code",
         redirect_uri: REDIRECT_URI,
       },
-    },
+    }),
   }).then((res) => res.json());
 
   if (!accessToken) {
@@ -53,8 +57,12 @@ const main = async () => {
   const accessToken = await exchangeCodeForAccess(code);
 
   const accountInfo = await fetch(`${TOKEN_URL}/${accessToken}`, {
-    username: CLIENT_ID,
-    password: CLIENT_SECRET,
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username: CLIENT_ID, password: CLIENT_SECRET }),
   }).then((res) => res.json());
 
   console.log("extractAccountId(accountInfo)", extractAccountId(accountInfo));
